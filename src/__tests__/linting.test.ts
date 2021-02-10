@@ -1,13 +1,12 @@
 /* global describe, it*/
 'use strict';
 
-const path = require('path');
-const eslint = require('..');
-const File = require('vinyl');
-const stringToStream = require('from2-string');
-const should = require('should');
-
-require('mocha');
+import path from 'path'
+import eslint from '..'
+import File from 'vinyl'
+import stringToStream from 'from2-string'
+import should from 'should'
+import 'mocha'
 
 describe('gulp-eslint plugin', () => {
 	it('should configure an alternate parser', done => {

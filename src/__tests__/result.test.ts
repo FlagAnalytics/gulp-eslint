@@ -1,12 +1,11 @@
 /* global describe, it, beforeEach */
 'use strict';
 
-const File = require('vinyl');
-const PassThrough = require('stream').PassThrough;
-const should = require('should');
-const eslint = require('..');
-
-require('mocha');
+import File from 'vinyl'
+import { PassThrough } from 'stream'
+import should from 'should'
+import 'mocha'
+import eslint from '..'
 
 describe('gulp-eslint result', () => {
 	it('should provide an ESLint result', done => {

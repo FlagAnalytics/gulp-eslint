@@ -5,4 +5,4 @@ module.exports = {
 		'no-redeclare': 'off',
 		'no-use-before-define': 'off'
 	}
-};
+}

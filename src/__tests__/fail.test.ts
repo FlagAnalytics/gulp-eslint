@@ -1,16 +1,15 @@
 /* global describe, it, beforeEach */
 'use strict';
 
-const File = require('vinyl');
-const path = require('path');
-const should = require('should');
-const eslint = require('../');
-
-require('mocha');
+import File from 'vinyl'
+import path from 'path'
+import should from 'should'
+import eslint from '..'
+import 'mocha'
 
 describe('gulp-eslint failOnError', () =>  {
 	it('should fail a file immediately if an error is found', done =>  {
-		const lintStream = eslint({useEslintrc: false, rules: {'no-undef': 2}});
+		const lintStream = eslint({useEslintrc: false, rules: {'no-undef': 2}})
 
 		function endWithoutError() {
 			done(new Error('An error was not thrown before ending'));
@@ -18,36 +17,36 @@ describe('gulp-eslint failOnError', () =>  {
 
 		lintStream.pipe(eslint.failOnError())
 			.on('error', function(err)  {
-				this.removeListener('finish', endWithoutError);
-				should.exists(err);
-				err.message.should.equal('\'x\' is not defined.');
-				err.fileName.should.equal(path.resolve('test/fixtures/invalid.js'));
-				err.plugin.should.equal('gulp-eslint');
-				done();
+				this.removeListener('finish', endWithoutError)
+				should.exists(err)
+				err.message.should.equal('\'x\' is not defined.')
+				err.fileName.should.equal(path.resolve('test/fixtures/invalid.js'))
+				err.plugin.should.equal('gulp-eslint')
+				done()
 			})
-			.on('finish', endWithoutError);
+			.on('finish', endWithoutError)
 
 		lintStream.write(new File({
 			path: 'test/fixtures/invalid.js',
 			contents: Buffer.from('x = 1;')
-		}));
+		}))
 
 		lintStream.end();
-	});
+	})
 
 	it('should pass a file if only warnings are found', done =>  {
 
-		const lintStream = eslint({useEslintrc: false, rules: {'no-undef': 1, 'strict': 0}});
+		const lintStream = eslint({useEslintrc: false, rules: {'no-undef': 1, 'strict': 0}})
 
 		lintStream.pipe(eslint.failOnError())
 			.on('error', done)
-			.on('finish', done);
+			.on('finish', done)
 
 		lintStream.end(new File({
 			path: 'test/fixtures/invalid.js',
 			contents: Buffer.from('x = 0;')
-		}));
-	});
+		}))
+	})
 
 	it('should handle ESLint reports without messages', done =>  {
 

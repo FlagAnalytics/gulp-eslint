@@ -1,12 +1,11 @@
 /* global describe, it, beforeEach */
 'use strict';
 
-const File = require('vinyl');
-const stream = require('stream');
-const should = require('should');
-const eslint = require('..');
-
-require('mocha');
+import File from 'vinyl'
+import stream from 'stream'
+import should from 'should'
+import eslint from '..'
+import 'mocha'
 
 function getFiles() {
 	return [

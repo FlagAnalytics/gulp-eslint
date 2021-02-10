@@ -1,12 +1,11 @@
 /* global describe, it, afterEach */
 'use strict';
 
-const File = require('vinyl');
-const stream = require('stream');
-const should = require('should');
-const util = require('../util');
-
-require('mocha');
+import File from 'vinyl'
+import stream from 'stream'
+import should from 'should'
+import util from '../util'
+import 'mocha'
 
 describe('utility methods', () => {
 	describe('transform', () => {
